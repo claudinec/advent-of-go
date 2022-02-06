@@ -55,6 +55,8 @@ func Day01() {
 
 }
 
+// TODO Identify the current/most recent day based on contents of input directory
+// and run the day's function.
 func GetCurrentDay() {
 	inputFiles, err := os.ReadDir("input")
 	if err != nil {
