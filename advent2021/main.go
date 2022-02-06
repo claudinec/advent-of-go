@@ -55,7 +55,16 @@ func Day01() {
 
 }
 
+func GetCurrentDay() {
+	inputFiles, err := os.ReadDir("input")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(len(inputFiles))
+}
+
 func Main() {
 	os.Chdir("advent2021")
-	Day01()
+	GetCurrentDay()
+	//Day01()
 }
