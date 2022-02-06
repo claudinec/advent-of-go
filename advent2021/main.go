@@ -9,10 +9,10 @@ import (
 	"strconv"
 )
 
-// Sonar Sweep: How many measurements are larger than the previous measurement?
+// Sonar Sweep
 func Day01() {
 	var sonarReadings []int
-	var numLines int = 0
+	var numReadings int = 0
 	var increaseCounter int = 0
 
 	data, err := os.ReadFile("input/1.txt")
@@ -28,17 +28,30 @@ func Day01() {
 			log.Fatal(err)
 		}
 		sonarReadings = append(sonarReadings, lineInt)
-		numLines++
+		numReadings++
 	}
 
-	for lineCounter := 1; lineCounter < numLines; lineCounter++ {
+	// How many measurements are larger than the previous measurement?
+	for lineCounter := 0; lineCounter < numReadings-1; lineCounter++ {
 		var thisVal int = sonarReadings[lineCounter]
-		var prevVal int = sonarReadings[lineCounter-1]
-		if thisVal > prevVal {
+		var nextVal int = sonarReadings[lineCounter+1]
+		if nextVal > thisVal {
 			increaseCounter++
 		}
 	}
 	fmt.Printf("There were %d increased measurements.\n", increaseCounter)
+
+	// Consider sums of a three-measurement sliding window. How many sums
+	// are larger than the previous sum?
+	var sumIncCounter = 0
+	for sumCounter := 0; sumCounter < numReadings-3; sumCounter++ {
+		var thisSum int = sonarReadings[sumCounter] + sonarReadings[sumCounter+1] + sonarReadings[sumCounter+2]
+		var nextSum int = sonarReadings[sumCounter+1] + sonarReadings[sumCounter+2] + sonarReadings[sumCounter+3]
+		if nextSum > thisSum {
+			sumIncCounter++
+		}
+	}
+	fmt.Printf("There were %d increased three-measurement sums.\n", sumIncCounter)
 
 }
 
