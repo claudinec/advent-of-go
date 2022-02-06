@@ -1,8 +1,10 @@
 package advent2021
 
 import (
-	"log"
-	"os"
+    "fmt"
+    "log"
+    "os"
+    "strings"
 )
 
 // Sonar Sweep: How many measurements are larger than the previous measurement?
@@ -11,7 +13,14 @@ func Day01() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// do stuff
+    const lines = strings.Split(data, "\n")
+    var increaseCounter int = 0
+    for lineCounter := 1; lineCounter < len(lines); lineCounter++ {
+        if lines[lineCounter] > lines[lineCounter-1] {
+            increaseCounter++
+        }
+    }
+    fmt.Println(increaseCounter, "increased measurements")
 }
 
 func Main() {
