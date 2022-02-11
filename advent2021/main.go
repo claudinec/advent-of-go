@@ -57,12 +57,20 @@ func Day01() {
 
 // TODO Identify the current/most recent day based on contents of input directory
 // and run the day's function.
+// This assumes that we are doing each day in sequence.
 func GetCurrentDay() {
+	funcMap := make(map[int]string, 25)
+	for i := 1; i <= 25; i++ {
+		funcMap[i] = fmt.Sprintf("Day%02d", i)
+	}
+
 	inputFiles, err := os.ReadDir("input")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(len(inputFiles))
+	var numDays int = len(inputFiles)
+	var dayFunc string = funcMap[numDays]
+	fmt.Println(dayFunc)
 }
 
 func Main() {
